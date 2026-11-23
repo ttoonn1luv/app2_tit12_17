@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  // จุดเริ่มต้นการทำงานของแอป Flutter
   runApp(const MyApp());
 }
 
-// Widget หลักของแอปพลิเคชัน (Root Widget)
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -13,102 +11,101 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // กำหนดธีมและโทนสีหลักของแอป
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const HomePage(), // หน้าแรกที่จะเปิดขึ้นมา
+      home: const HomePage(),
     );
   }
 }
 
-// หน้าแรกของแอปพลิเคชัน
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // แถบด้านบนของหน้าจอ (AppBar)
-      appBar: AppBar(
-        title: const Text('หน้าแรก'), // ข้อความหัวเรื่องบน AppBar
-      ),
-      // ส่วนเนื้อหาหลัก จัดวางองค์ประกอบในแนวตั้งด้วย Column
-      body: Column(
-        children: [
-          // 1. ข้อความธรรมดา (ใช้ขนาดและสีเริ่มต้น)
-          const Text("Hello"),
-
-          // 2. ข้อความปรับขนาดและความหนา
-          const Text(
-            "Hello",
-            style: TextStyle(
-              fontSize: 20.0,              // fontSize: กำหนดขนาดตัวอักษร
-              fontWeight: FontWeight.bold, // fontWeight: กำหนดความหนาตัวอักษร (bold = ตัวหนา)
-            ),
-          ),
-
-          // 3. ข้อความปรับสี ขนาด ความหนา และสีพื้นหลัง
-          Text(
-            "Hello",
-            style: TextStyle(
-              color: Colors.pink,                  // color: กำหนดสีตัวอักษร (สีชมพู)
-              backgroundColor: Colors.yellow[300], // backgroundColor: สีพื้นหลังข้อความ (ใช้ [300] แทน (300))
-              fontSize: 24.0,                      // fontSize: กำหนดขนาดตัวอักษร
-              fontWeight: FontWeight.w600,         // fontWeight: ความหนาตัวอักษร (w100 - w900)
-            ),
-          ),
-
-          // 4. จัดวางองค์ประกอบในแนวนอนด้วย Row
-          const Row(
-            children: [
-              Icon(Icons.sunny),           // Icon: ไอคอนรูปพระอาทิตย์
-              Icon(Icons.monetization_on), // Icon: ไอคอนรูปเหรียญ
-              Icon(Icons.cloud),           // Icon: ไอคอนรูปก้อนเมฆ
-            ],
-          ),
-          // 5. แสดงรูปภาพจาก assets และรูปภาพจากอินเทอร์เน็ต (Image.network) แบบวงกลม
-          Row(
-            children: [
-              // 5.1 รูปภาพจากไฟล์ในโปรเจกต์ (Image.asset)
-              Image.asset(
-                "assets/Doraemon.png",
-                width: 150,        // width: กำหนดความกว้างรูปภาพ (150px)
-                height: 150,       // height: กำหนดความสูงรูปภาพ (150px)
-                fit: BoxFit.cover, // fit: ขยายรูปภาพเต็มกรอบโดยรักษาอัตราส่วน
-              ),
-
-              // 5.2 รูปภาพจากอินเทอร์เน็ต (Image.network) แบบวงกลมด้วย ClipOval
-              ClipOval(
-                child: Image.network(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwJeVkpGFJg6cJ7lX_XibbYsSz863BqFcXmMuOX8VVXWpxPWKsq8neC28&s=10", // URL รูปภาพบนเว็บ
-                  width: 150,        // กำหนดความกว้างรูปภาพ (150px)
-                  height: 150,       // กำหนดความสูงรูปภาพ (150px)
-                  fit: BoxFit.cover, // ขยายรูปภาพเต็มวงกลมพอดี
-                ),                   // วงเล็บปิด Image.network
-              ),                     // วงเล็บปิด ClipOval
-            ],
-          ),
-
-          // 6. ปุ่มกดด้วย ElevatedButton
-          Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {},    // onPressed: ฟังก์ชันเมื่อกดปุ่ม
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,  // backgroundColor: สีพื้นหลังปุ่ม (สีฟ้า)
-                  foregroundColor: Colors.white, // foregroundColor: สีตัวอักษรบนปุ่ม (สีขาว)
-                ),
-                child: const Text("Button1"),    // child: แสดงข้อความบนปุ่ม
-              ),
-              SizedBox(
-                width: 10,
-                height: 100,
-              )
-            ],
-          ),
+      appBar: AppBar( // ส่วนหัวหน้าแอป
+        title: const Text('bellingham'), // หัวข้อ
+        leading: const Icon(Icons.home), // ซ้าย
+        actions: const [ // ขวา
+          Icon(Icons.notification_add),
+          Icon(Icons.menu),
         ],
+      ),
+      body: SingleChildScrollView( // ครอบ SingleChildScrollView ป้องกันหน้าจอล้น
+        child: Column(
+          children: [
+            const Text("Hello"),
+            const Text("Hello"),
+            Text(
+              "Hello",
+              style: TextStyle( // ตกแต่งข้อความ
+                color: Colors.pink, // สีอักษร
+                backgroundColor: Colors.yellow[300], // สีพื้นหลัง
+                fontSize: 40, // ขนาด
+                fontWeight: FontWeight.w900, // ความหนาเส้นอักษร
+              ),
+            ),
+            const Row(
+              children: [
+                Icon(
+                  Icons.sunny,
+                  color: Colors.deepOrange, // สีไอคอน
+                  size: 60, // ขนาด
+                ),
+                Icon(Icons.monetization_on, size: 40),
+                Icon(Icons.cloud, size: 40),
+              ],
+            ),
+            Row(
+              children: [
+                Image.asset( // ภาพจากไฟล์ในโปรเจกต์
+                  "assets/Doraemon.png",
+                  width: 150, // กว้าง
+                  height: 150, // สูง
+                  fit: BoxFit.cover, // ภาพเต็มกรอบ
+                ),
+                ClipOval( // ทำให้ภาพเป็นวงกลม
+                  child: Image.network( // ภาพจากลิงก์
+                    "https://discovery.sndimg.com/content/dam/images/discovery/fullset/2022/1/31/GettyImages-467491721.jpg.rend.hgtvcom.1280.1280.suffix/1643651771303.jpeg",
+                    width: 150,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                ElevatedButton( // ปุ่มทึบ
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepOrange, // สีพื้นหลัง
+                    foregroundColor: Colors.white, // สีข้อความ, ไอคอน
+                  ),
+                  child: const Text("ปุ่ม 1"),
+                ),
+                const SizedBox( // เว้นช่องว่าง
+                  width: 20, // เว้นแนวนอน
+                  height: 100, // เว้นแนวตั้ง
+                ),
+                Expanded( // ขยาย
+                  child: OutlinedButton( // ปุ่มมีเส้นขอบ
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.lightBlueAccent[50],
+                      foregroundColor: Colors.blueAccent,
+                    ),
+                    child: const Text("ปุ่ม 2"),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
